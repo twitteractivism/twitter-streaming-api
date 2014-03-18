@@ -1,0 +1,13 @@
+<div id="tweet_column">
+  <div id="ajax_url" class="hidden">[ajax_url]</div>
+  <div id="new_tweet_count" class="hidden"></div>  
+  <div id="new_count_refresh" class="hidden">[new_count_refresh]</div>  
+  <div id="tweet_list"> 
+    [tweets]
+  </div>
+  <div id="more_tweets_button" class="hidden">
+    <span id="tweet_count"></span> [more_button]
+  </div>
+</div>
+
+ 
