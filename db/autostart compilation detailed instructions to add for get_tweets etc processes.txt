@@ -1,0 +1,58 @@
+/*
+* Instructions for autostarting of db/get_tweets_keyword, * db/parse_tweets_keyword and recalladmin/monitor.php files on server reboot
+*/
+
+1. root login using putty or any other terminal
+
+2. Modify the file isrunning.c by inserting your user name and path as per 
+   instructions given in the file. Then, go to location: /etc/rc.d
+   # cd /etc/rc.d
+
+3. Add following line on the file rc.local (replace user with your created user)
+   su - user -c "cd /home/user/public_html/db; ./autostart"
+
+   Add a new line before adding the above line.
+   Save the file
+
+4. Make execution permission to the file by:
+   # chmod +x rc.local
+
+5. Switch user to username by (replace user with your created user):
+   # su user
+
+6. go to location /home/user/public_html/db using (replace user with your created user):
+   $ cd /home/user/public_html/db
+
+7. create a file name "autostart.c", and add the following code there:
+   #include <stdio.h>
+   #include <stdlib.h>
+
+   int main()
+   {
+      FILE *f1, *f2;
+	  f1 = fopen("../recalladmin/RUNNING", "r");
+	  if(f1 != 0)
+	  {
+		 sleep(30);
+		 system("nohup php get_tweets_keyword.php &");
+		 system("nohup php parse_tweets_keyword.php &");
+		
+		 f2 = fopen("../recalladmin/MONITORED", "r");
+		 if(f2 != 0)
+		 {
+		    sleep(10);
+			system("nohup php \"../recalladmin/monitor.php\" &");
+		 }
+	  }
+	  return 0;
+   }
+
+8. Save the file.
+
+9. Compile the file using following command to create autostart file:
+   $ cc autostart.c -o autostart
+
+10. A new file in db folder will be created named autostart 
+
+11. Reboot the server and You are done.
+    

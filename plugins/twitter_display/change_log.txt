@@ -1,0 +1,14 @@
+Changes in version 0.30 - Jan. 12, 2014
+
+1. Previous versions of this code had both index.html and index.php. This confused some people,
+so index.php has been renamed to twitter_display.php.
+
+2. The linkify.php file has been removed and the linkify() function added to a new file called
+display_lib.php. 
+
+3. Previous versions used the entities delivered by the API with each tweet to linkify mentions, 
+tags, and URLs in the tweet text. This version no longer uses the entities. It uses code found
+in the linkify() function stored in the display_lib.php file. As a result, the entities object is
+no longer saved in the tweets table. 
+
+4. The AJAX_URL constant has been moved to twitter_display_config.php. 

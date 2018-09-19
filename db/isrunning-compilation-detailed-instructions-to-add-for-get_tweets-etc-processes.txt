@@ -1,0 +1,22 @@
+﻿/*
+* Instructions for autostarting of db/get_tweets_keyword, db/parse_tweets_keyword and recalladmin/monitor.php files when they get killed
+*/
+
+1. root login using putty or any other terminal
+
+2. Switch user to username by (replace user with your created user):
+   # su user
+
+3. Modify the file isrunning.c by inserting your user name and path as per    instructions given in the file. Then, go to location where isrunning.c file is    located
+
+4. Compile the file 'isrunning.c' using following command to create autostart file:
+   $ cc isrunning.c -o isrunning
+
+5. Make execution permission to the file 'isrunning' by following command:
+   # chmod +x isrunning
+
+6. A new file in db folder will be created named isrunning
+
+7. Reboot the server and You are done.
+
+
